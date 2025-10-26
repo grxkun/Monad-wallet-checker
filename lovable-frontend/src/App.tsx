@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { AlertTriangle, Shield, Search, Activity, TrendingUp, RefreshCw } from 'lucide-react';
 
 // API Configuration - Update this with your deployed backend URL
-const API_BASE = import.meta.env.VITE_API_URL || 'https://monad-security-api.onrender.com';
+const API_BASE = import.meta.env.VITE_API_URL || '';
 
 interface ThreatAlert {
   id: string;
@@ -103,6 +103,13 @@ const App: React.FC = () => {
   };
 
   const fetchThreats = async () => {
+    if (!API_BASE) {
+      // Frontend-only mode - show empty state
+      setThreats([]);
+      setErrorMessage('Backend not connected - running in offline mode');
+      return;
+    }
+    
     try {
       const response = await fetch(`${API_BASE}/api/threats`);
       if (response.ok) {
@@ -119,6 +126,18 @@ const App: React.FC = () => {
   };
 
   const fetchStats = async () => {
+    if (!API_BASE) {
+      // Frontend-only mode - show default stats
+      setStats({
+        total_threats: 0,
+        total_scans: 0,
+        active_monitoring: 0,
+        known_malicious_contracts: 2, // We know 2 malicious contracts
+        last_updated: new Date().toISOString()
+      });
+      return;
+    }
+    
     try {
       const response = await fetch(`${API_BASE}/api/stats`);
       if (response.ok) {
