@@ -21,6 +21,9 @@
   ],
   "exclude": [
     "node_modules",
-    "dist"
+    "dist",
+    "lovable-frontend",
+    "src/frontend",
+    "src/server.ts"
   ]
 }

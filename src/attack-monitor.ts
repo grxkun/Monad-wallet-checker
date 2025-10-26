@@ -77,8 +77,8 @@ export class AttackMonitor {
         // Check if this is a known malicious contract
         if (this.isKnownMaliciousContract(delegatedTo)) {
           alerts.push({
-            type: 'delegation_detected',
-            severity: 'CRITICAL',
+            type: 'delegation_detected' as const,
+            severity: 'CRITICAL' as const,
             message: '🚨 CRITICAL: EIP-7702 delegation to KNOWN MALICIOUS CONTRACT detected!',
             action: 'IMMEDIATE ACTION REQUIRED: Cancel delegation and transfer funds to safety',
             timestamp: new Date(),
@@ -91,8 +91,8 @@ export class AttackMonitor {
           });
         } else {
           alerts.push({
-            type: 'delegation_detected',
-            severity: 'HIGH',
+            type: 'delegation_detected' as const,
+            severity: 'HIGH' as const,
             message: '⚠️  EIP-7702 delegation detected',
             action: 'Verify if this delegation is legitimate',
             timestamp: new Date(),
@@ -111,8 +111,8 @@ export class AttackMonitor {
       
       if (balanceETH < 1.0 && balanceETH > 0) {
         alerts.push({
-          type: 'balance_drain',
-          severity: 'HIGH',
+          type: 'balance_drain' as const,
+          severity: 'HIGH' as const,
           message: '💸 LOW BALANCE WARNING: Potential fund drainage detected',
           action: 'Check recent transactions for unauthorized transfers',
           timestamp: new Date(),
