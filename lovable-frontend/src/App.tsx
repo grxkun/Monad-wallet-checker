@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { AlertTriangle, Shield, Search, Activity, TrendingUp, RefreshCw } from 'lucide-react';
 
-// API Configuration - Update this with your deployed backend URL
-const API_BASE = import.meta.env.VITE_API_URL || '';
+// API Configuration - Railway Backend URL
+const API_BASE = 'https://monad-wallet-checker-production.up.railway.app';
 
 interface ThreatAlert {
   id: string;
