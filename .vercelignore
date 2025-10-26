@@ -1,0 +1,9 @@
+src/
+lovable-frontend/
+dist/
+examples/
+*.md
+!README.md
+.env*
+setup.sh
+setup.bat
